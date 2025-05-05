@@ -35,6 +35,8 @@ def get_cpu_launch_year(cpu_name: str) -> str:
 
 @app.get("/buscar")
 async def buscar(cpu_name: str):
+    if not cpu_name.strip():
+        raise HTTPException(status_code=400, detail="Parâmetro 'cpu_name' não pode estar vazio.")
     try:
         year = get_cpu_launch_year(cpu_name)
         return {"cpu_name": cpu_name, "launch_year": year}
