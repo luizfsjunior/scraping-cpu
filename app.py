@@ -4,6 +4,10 @@ from bs4 import BeautifulSoup
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "API ready!"}
+
 def get_cpu_launch_year(cpu_name: str) -> str:
     url_safe = cpu_name.lower().replace(" ", "+")
     url = f"https://www.techpowerup.com/cpu-specs/?q={url_safe}"
